@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FOREMAS - Gold Price Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Navigation -->
+    <nav class="bg-nav shadow-lg sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between">
+          <div class="flex space-x-7">
+            <div class="flex items-center py-4 px-2">
+              <img src="https://foremas.vercel.app/logo.jpg" alt="logo" class="w-3/4 logo" />
+            </div>
+          </div>
+          <div class="hidden md:flex items-center space-x-1">
+            <a
+              href="#home"
+              class="py-4 px-2 text-yellow-600 border-b-4 border-yellow-500 font-semibold"
+              >Home</a
+            >
+            <a
+              href="#about"
+              class="py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
+              >About</a
+            >
+            <a
+              href="#team"
+              class="py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
+              >Team</a
+            >
+            <a
+              href="#predict"
+              class="py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
+              >Predict</a
+            >
+            <a
+              href="#contact"
+              class="py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
+              >Contact</a
+            >
+          </div>
+          <div class="md:hidden flex items-center">
+            <button class="outline-none mobile-menu-button">
+              <svg
+                class="w-6 h-6 text-gray-500"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="hidden mobile-menu">
+        <ul>
+          <li>
+            <a
+              href="#home"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#about"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#team"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              >Team</a
+            >
+          </li>
+          <li>
+            <a
+              href="#predict"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              >Predict</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg py-20">
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row items-center"
+      >
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
+            Smart Gold Price Prediction with
+            <span class="text-yellow-600">FOREMAS</span>
+          </h1>
+          <p class="text-lg md:text-xl text-gray-600 mb-8">
+            Leveraging LSTM models to forecast gold prices with high accuracy.
+            Make informed investment decisions with our cutting-edge prediction
+            system.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+          >
+            <a
+              href="#predict"
+              class="gold-gradient text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition duration-300 flex items-center justify-center"
+            >
+              Try Predictor <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <a
+              href="#about"
+              class="bg-white text-yellow-600 px-8 py-3 rounded-full font-semibold text-lg border-2 border-yellow-500 hover:bg-yellow-50 transition duration-300 flex items-center justify-center"
+            >
+              Learn More <i class="fas fa-book-open ml-2"></i>
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+         <img src="/bar-mintvaries-gold-1kilo_1.webp" alt="Gold Bars" class="w-3/4 floating" />
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center mb-16 light"
+        >
+          About <span class="text-yellow-600">FOREMAS</span>
+        </h2>
+
+        <div class="flex flex-col md:flex-row items-center mb-16">
+          <div class="md:w-1/2 mb-10 md:mb-0">
+            <img src="/chart.png" alt="Chart" class="rounded-lg shadow-xl" />
+          </div>
+          <div class="md:w-1/2 md:pl-12">
+            <h3 class="text-2xl font-semibold light mb-4">
+              Advanced LSTM Forecasting
+            </h3>
+            <p class="text-gray-600 mb-6 white">
+              FOREMAS utilizes the LSTM (Long Short-Term Memory) model, a powerful statistical method for time series
+              forecasting. Our system analyzes historical gold price data to
+              predict future trends with remarkable accuracy.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="bg-yellow-100 p-2 rounded-full mr-4">
+                  <i class="fas fa-chart-line text-yellow-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold light">
+                    Time Series Analysis
+                  </h4>
+                  <p class="text-gray-600 white">
+                    Captures patterns and trends in gold price movements over
+                    time.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-yellow-100 p-2 rounded-full mr-4">
+                  <i class="fas fa-brain text-yellow-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold light">Machine Learning</h4>
+                  <p class="text-gray-600 white">
+                    Our model continuously learns and improves from new data
+                    inputs.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-yellow-100 p-2 rounded-full mr-4">
+                  <i class="fas fa-bullseye text-yellow-600"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 light">High Accuracy</h4>
+                  <p class="text-gray-600 white">
+                    Precision-tuned parameters for reliable forecasting results.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+          <div
+            class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-yellow-500 mb-4">
+              <i class="fas fa-database text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Data Collection</h3>
+            <p class="text-gray-600">
+              We gather comprehensive historical gold price data from reliable
+              sources to ensure our predictions are based on accurate
+              information.
+            </p>
+          </div>
+          <div
+            class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-yellow-500 mb-4">
+              <i class="fas fa-cogs text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Model Training</h3>
+            <p class="text-gray-600">
+              Our LSTM model is carefully trained with optimal parameters to
+              capture the complex patterns in gold price movements.
+            </p>
+          </div>
+          <div
+            class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+          >
+            <div class="text-yellow-500 mb-4">
+              <i class="fas fa-chart-pie text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Prediction & Analysis</h3>
+            <p class="text-gray-600">
+              Get detailed forecasts with confidence intervals and trend
+              analysis to support your investment decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4"
+        >
+          Our <span class="text-yellow-600">Team</span>
+        </h2>
+        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+          A talented team of machine learning experts and frontend/backend
+          developers working together to deliver accurate gold price
+          predictions.
+        </p>
+
+        <div class="mb-16">
+          <h3 class="text-2xl font-semibold text-center text-gray-800 mb-8">
+            <i class="fas fa-robot text-yellow-500 mr-2"></i> Machine Learning
+            Team
+          </h3>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div
+              class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
+            >
+              <div
+                class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center"
+              >
+                <img src="/2.png" alt="Rasyid" class="rounded-lg shadow-xl turun" />
+              </div>
+              <div class="p-6">
+                <h4 class="text-xl font-bold mb-1">Rasyid Naufal</h4>
+                <p class="text-yellow-600 font-medium mb-3">ML Lead</p>
+                <p class="text-gray-600">
+                  Time series analysis using LSTM model that be used for financial forecasting.
+                </p>
+                <div class="mt-4 flex space-x-4">
+                  <a href="https://www.linkedin.com/in/rasyidnaufal/" class="text-gray-400 hover:text-yellow-500" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="https://github.com/Ranfl" class="text-gray-400 hover:text-yellow-500" target="_blank">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300" >
+              <div class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center">
+                <img src="/1.png" alt="Viddy" class="rounded-lg shadow-xl turun" />
+              </div>
+              <div class="p-6">
+                <h4 class="text-xl font-bold mb-1">Viddy Virstandi</h4>
+                <p class="text-yellow-600 font-medium mb-3">ML Developer</p>
+                <p class="text-gray-600">
+                  Specializes in model optimization and deployment, ensuring our
+                  predictions are both accurate and fast.
+                </p>
+                <div class="mt-4 flex space-x-4">
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
+            >
+              <div
+                class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center"
+              >
+                <img src="/3.png" alt="Zita" class="rounded-lg shadow-xl turun" />
+              </div>
+              <div class="p-6">
+                <h4 class="text-xl font-bold mb-1">Zita Natalia</h4>
+                <p class="text-yellow-600 font-medium mb-3">Data Specialist</p>
+                <p class="text-gray-600">
+                  Responsible for data preprocessing, cleaning, and feature
+                  engineering to ensure high-quality input for our models.
+                </p>
+                <div class="mt-4 flex space-x-4">
+                  <a href="https://www.linkedin.com/in/zitaarisenda" class="text-gray-400 hover:text-yellow-500" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="https://github.com/zitaarisenda" class="text-gray-400 hover:text-yellow-500" target="_blank">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-2xl font-semibold text-center text-gray-800 mb-8">
+            <i class="fas fa-code text-yellow-500 mr-2"></i> FEBE Team
+          </h3>
+          <div class="grid md:grid-cols-3 gap-8">
+            <div
+              class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
+            >
+              <div
+                class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center"
+              >
+                <i class="fas fa-desktop text-6xl text-yellow-600"></i>
+              </div>
+              <div class="p-6">
+                <h4 class="text-xl font-bold mb-1">Hermanto Ndruru</h4>
+                <p class="text-yellow-600 font-medium mb-3">UI/UX Developer</p>
+                <p class="text-gray-600">
+                  Crafts beautiful, intuitive interfaces that make complex data
+                  accessible to everyone.
+                </p>
+                <div class="mt-4 flex space-x-4">
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
+            >
+              <div
+                class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center"
+              >
+                <i class="fas fa-server text-6xl text-yellow-600"></i>
+              </div>
+              <div class="p-6">
+                <h4 class="text-xl font-bold mb-1">Arjuna</h4>
+                <p class="text-yellow-600 font-medium mb-3">API Developer</p>
+                <p class="text-gray-600">
+                  Builds backend systems and APIs that power our
+                  prediction engine with reliability and speed.
+                </p>
+                <div class="mt-4 flex space-x-4">
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
+            >
+              <div
+                class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center"
+              >
+                <i class="fas fa-mobile-alt text-6xl text-yellow-600"></i>
+              </div>
+              <div class="p-6">
+                <h4 class="text-xl font-bold mb-1">Fahrul</h4>
+                <p class="text-yellow-600 font-medium mb-3">DevOps Engineer</p>
+                <p class="text-gray-600">
+                  Ensures seamless integration between frontend and backend with
+                  a focus on performance and scalability.
+                </p>
+                <div class="mt-4 flex space-x-4">
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prediction Section -->
+    <section id="predict" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center text-gray-800 light mb-4"
+        >
+          Gold Price <span class="text-yellow-600">Prediction</span>
+        </h2>
+        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16 white">
+          Enter your parameters and let our LSTM model forecast future gold
+          prices for you.
+        </p>
+
+        <div class="flex flex-col lg:flex-row gap-12">
+          <div class="lg:w-1/2">
+            <div class="bg-gray-50 p-8 rounded-xl shadow-lg prediction-card">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-6">
+                <i class="fas fa-sliders-h text-yellow-500 mr-2"></i> Prediction
+                Parameters
+              </h3>
+
+              <form id="predictionForm">
+                <div class="mb-6">
+                  <label
+                    class="block text-gray-700 font-medium mb-2"
+                    for="timeframe"
+                  >
+                    Prediction Timeframe
+                  </label>
+                  <select
+                    id="timeframe"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition duration-300"
+                  >
+                    <option value="7">1 Week</option>
+                    <option value="30" selected>1 Month</option>
+                    <option value="90">3 Months</option>
+                    <option value="180">6 Months</option>
+                    <option value="365">1 Year</option>
+                  </select>
+                </div>
+                <button
+                  type="button"
+                  id="predictButton"
+                  class="gold-gradient w-full text-white px-6 py-4 rounded-lg font-semibold text-lg shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center"
+                >
+                  <i class="fas fa-calculator mr-2"></i> Calculate Prediction
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="lg:w-1/2">
+            <div
+              class="bg-gray-50 p-8 rounded-xl shadow-lg prediction-card h-full"
+            >
+              <h3 class="text-2xl font-semibold text-gray-800 mb-6">
+                <i class="fas fa-chart-line text-yellow-500 mr-2"></i>
+                Prediction Results
+              </h3>
+
+              <div id="loadingIndicator" class="hidden text-center py-12">
+                <div
+                  class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-yellow-500 mb-4"
+                ></div>
+                <p class="text-gray-600">Processing your prediction...</p>
+              </div>
+
+              <div id="predictionResults" class="hidden">
+                <div class="mb-8">
+                  <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div
+                    class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-yellow-500"
+                  >
+                    <p class="text-sm text-gray-500">Current Price</p>
+                    <p class="text-xl font-bold">$1,850.75</p>
+                  </div>
+                  <div
+                    class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-yellow-500"
+                  >
+                    <p class="text-sm text-gray-500">Predicted Price</p>
+                    <p class="text-xl font-bold" id="predictedPrice">
+                      $1,920.40
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6"
+                >
+                  <h4
+                    class="font-semibold text-yellow-800 mb-2 flex items-center"
+                  >
+                    <i class="fas fa-lightbulb mr-2"></i> Investment Suggestion
+                  </h4>
+                  <p class="text-yellow-700" id="investmentAdvice">
+                    Based on our analysis, we recommend considering buying gold
+                    as prices are expected to rise in the coming month.
+                  </p>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-gray-800 mb-3">
+                    Prediction Details
+                  </h4>
+                  <div class="space-y-3">
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Time Period:</span>
+                      <span class="font-medium" id="resultTimeframe"
+                        >1 Month</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Confidence Level:</span>
+                      <span class="font-medium" id="resultConfidence">95%</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Expected Change:</span>
+                      <span
+                        class="font-medium text-green-600"
+                        id="expectedChange"
+                        >+3.76%</span
+                      >
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-gray-600">Prediction Date:</span>
+                      <span class="font-medium" id="predictionDate"
+                        >June 15, 2023</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="initialState" class="text-center py-12">
+                <i class="fas fa-chart-bar text-4xl text-gray-300 mb-4"></i>
+                <h4 class="text-lg font-medium text-gray-500 mb-2">
+                  No Prediction Yet
+                </h4>
+                <p class="text-gray-400 max-w-xs mx-auto">
+                  Enter your parameters and click "Calculate Prediction" to see
+                  forecast results.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4"
+        >
+          Get In <span class="text-yellow-600">Touch</span>
+        </h2>
+        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+          Have questions about our gold price prediction model? Reach out to our
+          team.
+        </p>
+
+        <div class="flex flex-col md:flex-row gap-12">
+          <div class="md:w-1/2">
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-6">
+                <i class="fas fa-envelope text-yellow-500 mr-2"></i> Send Us a
+                Message
+              </h3>
+
+              <form id="contactForm">
+                <div class="mb-6">
+                  <label
+                    class="block text-gray-700 font-medium mb-2"
+                    for="name"
+                  >
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition duration-300"
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    class="block text-gray-700 font-medium mb-2"
+                    for="email"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition duration-300"
+                    placeholder="john@example.com"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    class="block text-gray-700 font-medium mb-2"
+                    for="subject"
+                  >
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition duration-300"
+                    placeholder="Question about predictions"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    class="block text-gray-700 font-medium mb-2"
+                    for="message"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    rows="4"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition duration-300"
+                    placeholder="Your message here..."
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="gold-gradient w-full text-white px-6 py-3 rounded-lg font-semibold text-lg shadow-md hover:shadow-lg transition duration-300"
+                  >
+                  Send Message <i class="fas fa-paper-plane ml-2"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="md:w-1/2">
+            <div class="bg-white p-8 rounded-xl shadow-lg h-full">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-6">
+                <i class="fas fa-info-circle text-yellow-500 mr-2"></i> Contact
+                Information
+              </h3>
+
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-map-marker-alt text-yellow-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Our Location</h4>
+                    <p class="text-gray-600">
+                      Jakarta, Indonesia
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-envelope text-yellow-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Email Us</h4>
+                    <p class="text-gray-600">cs.foremas@gmail.com</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-phone-alt text-yellow-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Call Us</h4>
+                    <p class="text-gray-600">+62 896-5991-8449</p>
+                    <p class="text-gray-600">+62 858-8692-0987</p>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-clock text-yellow-600"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-gray-800">Working Hours</h4>
+                    <p class="text-gray-600">Monday - Friday: 9:00 - 17:00</p>
+                    <p class="text-gray-600">Saturday: 9:00 - 12:00</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 bg-nav">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <div class="flex items-center">
+              <img src="/logo.jpg" alt="logo" class="w-3/4 logo-footer" />
+            </div>
+            <p class="mt-2 text-gray-400 max-w-md">
+              Advanced LSTM-based gold price prediction system to help you make
+              informed investment decisions.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div>
+              <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#home"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >Home</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#about"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >About</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#team"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >Team</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#predict"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >Predict</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#contact"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-lg mb-4">Resources</h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >Blog</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >Documentation</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >API</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-yellow-400 transition duration-300"
+                    >GitHub</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 mb-4 md:mb-0">
+            &copy; 2025 FOREMAS. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="fixed bottom-8 right-8 bg-yellow-500 text-white p-3 rounded-full shadow-lg hover:bg-yellow-600 transition duration-300 hidden"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      document.querySelector("#contactForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const data = {
+          name: document.querySelector("#name").value,
+          email: document.querySelector("#email").value,
+          subject: document.querySelector("#subject").value,
+          message: document.querySelector("#message").value,
+        };
+
+        fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then(async (res) => {
+            if (!res.ok) {
+              const errText = await res.text();
+              throw new Error(`HTTP ${res.status}: ${errText}`);
+            }
+            return res.json();
+          })
+          .then((response) => {
+            alert(response.message || "Email berhasil dikirim!");
+          })
+          .catch((err) => {
+            console.error("🔥 ERROR:", err);
+            alert("Gagal mengirim email: " + err.message);
+          });
+      });
+    </script>
+
+
+  </body>
+</html>

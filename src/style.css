@@ -1,0 +1,62 @@
+html {
+  scroll-behavior: smooth;
+}
+.gradient-bg {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+.gold-gradient {
+  background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+}
+.chart-container {
+  height: 400px;
+  position: relative;
+}
+.prediction-card {
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.prediction-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+@keyframes floating {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.logo{
+  width: 97px;
+}
+.logo-footer{
+  width: 150px;
+}
+.bg-nav{
+  background-color: #131f2b;
+}
+#about{
+  background-color: #131f2b;
+}
+#predict{
+  background-color: #131f2b;
+}
+.light{
+  color: #d9d9d9;
+}
+.white{
+  color: white
+}
+.turun{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
