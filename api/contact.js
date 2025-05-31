@@ -38,6 +38,8 @@ module.exports = async (req, res) => {
   };
 
   try {
+    console.warn(process.env.MAIL_USER)
+    console.warn(process.env.MAIL_PASS)
     await transporter.sendMail(mailOptions);
     res.status(200).json({ message: 'Email berhasil dikirim' });
   } catch (err) {
