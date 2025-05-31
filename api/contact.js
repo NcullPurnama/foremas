@@ -15,6 +15,8 @@ module.exports = async (req, res) => {
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
+    logger: true,
+    debug: true,
     auth: {
       user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS
