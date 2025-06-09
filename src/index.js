@@ -51,7 +51,7 @@ predictButton.addEventListener("click", () => {
     document.getElementById("resultTimeframe").textContent =
       timeframeText;
 
-    // Generate
+    // Generate percentage
     const prices = data.prediction;
     const changePercentage = (prices.at(-1) - prices[0]) / prices[0] * 100;
     const isPositive = changePercentage >= 0;
