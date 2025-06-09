@@ -832,7 +832,7 @@
       function predict() {
         const days = parseInt(document.getElementById('time').value);
 
-        fetch('http://localhost:3000/api/predict', {
+        fetch('http://https://web-production-960e5.up.railway.app/:3000/api/predict', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ days_ahead: days })
