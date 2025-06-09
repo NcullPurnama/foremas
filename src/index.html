@@ -836,13 +836,15 @@
         const selectTime   = document.getElementById('time');
         const spanResult   = document.getElementById('result');            // <span id="result">
         const spanTf       = document.getElementById('resultTimeframe');   // <span id="resultTimeframe">
+        const spanPredict  = document.getElementById('predictedPrice');    // <span id="predictedPrice">
         const spanChange   = document.getElementById('expectedChange');    // <span id="expectedChange">
+        const spanDate     = document.getElementById("predictionDate")     // <span id="predictionDate">
         const spanAdvice   = document.getElementById('investmentAdvice');  // <span id="investmentAdvice">
         const canvasChart  = document.getElementById('priceChart');        // <canvas id="priceChart">
 
         /* ─── Guard: pastikan semua elemen ada ─── */
-        if (!selectTime || !spanResult || !spanTf || !spanChange || !spanAdvice || !canvasChart) {
-          console.error('🔥 Element HTML tidak lengkap—periksa id="time", "result", "resultTimeframe", "expectedChange", "investmentAdvice", dan "priceChart".');
+        if (!selectTime || !spanResult || !spanTf || !spanPredict|| !spanChange || !spanDate ||!spanAdvice || !canvasChart) {
+          console.error('🔥 Element HTML tidak lengkap');
           return;
         }
 
@@ -875,8 +877,7 @@
             spanResult.textContent = `Prediksi harga emas: $ ${average}`;
             spanTf.textContent     = selectTime.options[selectTime.selectedIndex].text;
 
-            /* Hitung perubahan acak demo */
-            const changePct   = (Math.random() * 6 - 2).toFixed(2);
+            const changePct   = (prices.at(-1) - prices[0]) / prices[0] * 100;
             const isPositive  = changePct >= 0;
             spanChange.textContent = `${isPositive ? '+' : ''}${changePct}%`;
             spanChange.className   = `font-medium ${isPositive ? 'text-green-600' : 'text-red-600'}`;
