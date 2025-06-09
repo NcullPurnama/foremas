@@ -1,4 +1,14 @@
 module.exports = async (req, res) => {
+  // Set headers CORS untuk semua request
+  res.setHeader('Access-Control-Allow-Origin', '*'); // ganti * dengan domain frontend kalau mau lebih aman
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle preflight request
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end(); // No Content, langsung selesai
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -10,7 +20,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'days_ahead harus berupa angka', received: req.body });
   }
 
-  const RAILWAY_URL = 'https://web-production-b0aa.up.railway.app/predict'; 
+  const RAILWAY_URL = 'https://web-production-b0aa.up.railway.app/predict';
 
   try {
     const response = await fetch(RAILWAY_URL, {
