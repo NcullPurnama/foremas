@@ -15,7 +15,7 @@
         <div class="flex justify-between">
           <div class="flex space-x-7">
             <div class="flex items-center py-4 px-2">
-              <img src="https://foremas.vercel.app/logo.jpg" alt="logo" class="w-3/4 logo" />
+              <img src="/logo.jpg" alt="logo" class="w-3/4 logo" />
             </div>
           </div>
           <div class="hidden md:flex items-center space-x-1">
@@ -271,7 +271,7 @@
               class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
             >
               <div
-                class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center"
+                class="h-48 profile flex items-center justify-center"
               >
                 <img src="/2.png" alt="Rasyid" class="rounded-lg shadow-xl turun" />
               </div>
@@ -292,7 +292,7 @@
               </div>
             </div>
             <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300" >
-              <div class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center">
+              <div class="h-48 profile flex items-center justify-center">
                 <img src="/1.png" alt="Viddy" class="rounded-lg shadow-xl turun" />
               </div>
               <div class="p-6">
@@ -316,7 +316,7 @@
               class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300"
             >
               <div
-                class="h-48 bg-gradient-to-r from-yellow-100 to-yellow-200 flex items-center justify-center"
+                class="h-48 profile flex items-center justify-center"
               >
                 <img src="/3.png" alt="Zita" class="rounded-lg shadow-xl turun" />
               </div>
@@ -438,7 +438,7 @@
           prices for you.
         </p>
 
-        <div class="flex flex-col lg:flex-row gap-12">
+        <div class="flex flex-col gap-12 md:items-center">
           <div class="lg:w-1/2">
             <div class="bg-gray-50 p-8 rounded-xl shadow-lg prediction-card">
               <h3 class="text-2xl font-semibold text-gray-800 mb-6">
@@ -450,16 +450,17 @@
                 <div class="mb-6">
                   <label
                     class="block text-gray-700 font-medium mb-2"
-                    for="timeframe"
+                    for="time"
                   >
                     Prediction Timeframe
                   </label>
                   <select
-                    id="timeframe"
+                    id="time"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-200 transition duration-300"
-                  >
-                    <option value="7">1 Week</option>
-                    <option value="30" selected>1 Month</option>
+
+                    >
+                    <option value="7" selected>1 Week</option>
+                    <option value="30">1 Month</option>
                     <option value="90">3 Months</option>
                     <option value="180">6 Months</option>
                     <option value="365">1 Year</option>
@@ -469,7 +470,8 @@
                   type="button"
                   id="predictButton"
                   class="gold-gradient w-full text-white px-6 py-4 rounded-lg font-semibold text-lg shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center"
-                >
+                    onclick="predict()"
+                  >
                   <i class="fas fa-calculator mr-2"></i> Calculate Prediction
                 </button>
               </form>
@@ -477,14 +479,7 @@
           </div>
 
           <div class="lg:w-1/2">
-            <div
-              class="bg-gray-50 p-8 rounded-xl shadow-lg prediction-card h-full"
-            >
-              <h3 class="text-2xl font-semibold text-gray-800 mb-6">
-                <i class="fas fa-chart-line text-yellow-500 mr-2"></i>
-                Prediction Results
-              </h3>
-
+            <div class="bg-gray-50 p-8 rounded-xl shadow-lg prediction-card h-full">
               <div id="loadingIndicator" class="hidden text-center py-12">
                 <div
                   class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-yellow-500 mb-4"
@@ -492,75 +487,27 @@
                 <p class="text-gray-600">Processing your prediction...</p>
               </div>
 
-              <div id="predictionResults" class="hidden">
-                <div class="mb-8">
-                  <div class="chart-container">
-                    <canvas id="priceChart"></canvas>
-                  </div>
-                </div>
+              <div class="relative w-full">
+                <div id="result" class="text-center text-gray-700 font-semibold mt-4"></div>
+                <canvas id="priceChart"></canvas>
+                <div id="predictionResults" class="hidden mt-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Prediction Result</h3>
 
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                  <div
-                    class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-yellow-500"
-                  >
-                    <p class="text-sm text-gray-500">Current Price</p>
-                    <p class="text-xl font-bold">$1,850.75</p>
-                  </div>
-                  <div
-                    class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-yellow-500"
-                  >
-                    <p class="text-sm text-gray-500">Predicted Price</p>
-                    <p class="text-xl font-bold" id="predictedPrice">
-                      $1,920.40
-                    </p>
-                  </div>
-                </div>
+                <p class="text-gray-600">
+                  Timeframe: <span id="resultTimeframe" class="font-medium text-gray-800"></span>
+                </p>
+                <p class="text-gray-600">
+                  Estimated Price: <span id="predictedPrice" class="font-medium text-yellow-600"></span>
+                </p>
+                <p class="text-gray-600">
+                  Expected Change: <span id="expectedChange" class="font-medium"></span>
+                </p>
+                <p class="text-gray-600">
+                  Forecast Until: <span id="predictionDate" class="font-medium text-gray-800"></span>
+                </p>
+                <p class="mt-4 text-sm text-gray-700 italic" id="investmentAdvice"></p>
+              </div>
 
-                <div
-                  class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6"
-                >
-                  <h4
-                    class="font-semibold text-yellow-800 mb-2 flex items-center"
-                  >
-                    <i class="fas fa-lightbulb mr-2"></i> Investment Suggestion
-                  </h4>
-                  <p class="text-yellow-700" id="investmentAdvice">
-                    Based on our analysis, we recommend considering buying gold
-                    as prices are expected to rise in the coming month.
-                  </p>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow-sm">
-                  <h4 class="font-semibold text-gray-800 mb-3">
-                    Prediction Details
-                  </h4>
-                  <div class="space-y-3">
-                    <div class="flex justify-between">
-                      <span class="text-gray-600">Time Period:</span>
-                      <span class="font-medium" id="resultTimeframe"
-                        >1 Month</span
-                      >
-                    </div>
-                    <div class="flex justify-between">
-                      <span class="text-gray-600">Confidence Level:</span>
-                      <span class="font-medium" id="resultConfidence">95%</span>
-                    </div>
-                    <div class="flex justify-between">
-                      <span class="text-gray-600">Expected Change:</span>
-                      <span
-                        class="font-medium text-green-600"
-                        id="expectedChange"
-                        >+3.76%</span
-                      >
-                    </div>
-                    <div class="flex justify-between">
-                      <span class="text-gray-600">Prediction Date:</span>
-                      <span class="font-medium" id="predictionDate"
-                        >June 15, 2023</span
-                      >
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div id="initialState" class="text-center py-12">
@@ -841,6 +788,8 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- script untuk email -->
     <script>
       document.querySelector("#contactForm").addEventListener("submit", function (e) {
         e.preventDefault();
@@ -875,6 +824,86 @@
           });
       });
     </script>
+
+    <!-- script untuk predict -->
+    <script>
+      let chartInstance = null;
+
+      function predict() {
+        const days = parseInt(document.getElementById('time').value);
+
+        fetch('http://localhost:3000/api/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ days_ahead: days })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            document.getElementById('result').textContent = "Error: " + data.error;
+            return;
+          }
+
+          const prices = data.prediction;
+          const average = data.average;
+
+          document.getElementById('result').textContent = 
+            `Prediksi harga emas: $ ${average}`;
+          const pricesWithOffset = [null, ...prices];  // agar titik hari ini kosong
+          const labels = getNextDates(prices.length + 1);
+
+          // Hapus chart lama jika ada
+          if (chartInstance) {
+            chartInstance.destroy();
+          }
+
+          chartInstance = new Chart(document.getElementById('priceChart'), {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Prediksi Harga Emas',
+                data: pricesWithOffset,
+                borderColor: 'gold',
+                backgroundColor: 'rgba(255,215,0,0.2)',
+                fill: true,
+                tension: 0.4
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: false
+                }
+              }
+            }
+          });
+        })
+        .catch(err => {
+          document.getElementById('result').textContent = 
+            'Terjadi kesalahan: ' + err.message;
+        });
+      }
+    </script>
+
+    <!-- script untuk mengambil tanggal -->
+     <script>
+      function getNextDates(count) {
+        const dates = [];
+        const today = new Date();
+
+        for (let i = 0; i < count; i++) {
+          const d = new Date(today);
+          d.setDate(today.getDate() + i);
+          dates.push(d.toLocaleDateString('id-ID', {
+            day: 'numeric', month: 'short', year: 'numeric'
+          }));
+        }
+
+        return dates;
+      }
+     </script>
 
 
   </body>
