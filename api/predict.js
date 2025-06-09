@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'days_ahead harus berupa angka', received: req.body });
   }
 
-  const RAILWAY_URL = 'https://web-production-b0aa.up.railway.app/predict'; // URL endpoint Python Flask/FastAPI Anda
+  const RAILWAY_URL = 'https://web-production-b0aa.up.railway.app/predict'; 
 
   try {
     const response = await fetch(RAILWAY_URL, {
