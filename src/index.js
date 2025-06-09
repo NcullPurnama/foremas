@@ -53,23 +53,19 @@ predictButton.addEventListener("click", () => {
 
     // Generate percentage
     const prices = data.prediction;
-    const changePercentage = (prices.at(-1) - prices[0]) / prices[0] * 100;
-    const isPositive = changePercentage >= 0;
-    const changeText = isPositive
-      ? `+${changePercentage}%`
-      : `${changePercentage}%`;
+    const average = data.average;
+
+    document.getElementById("resultTimeframe").textContent = timeframeText;
+
+    const lastChange = (prices.at(-1) - prices[0]) / prices[0] * 100;
+    const isPositive = lastChange >= 0;
+    const changeText = isPositive ? `+${lastChange.toFixed(2)}%` : `${lastChange.toFixed(2)}%`;
 
     document.getElementById("expectedChange").textContent = changeText;
-    document.getElementById("expectedChange").className = `font-medium ${
-      isPositive ? "text-green-600" : "text-red-600"
-    }`;
-
-    // Update advice based on prediction
-    const adviceText = isPositive
+    document.getElementById("expectedChange").className = `font-medium ${isPositive ? "text-green-600" : "text-red-600"}`;
+    document.getElementById("investmentAdvice").textContent = isPositive
       ? "Based on our analysis, we recommend considering buying gold as prices are expected to rise."
       : "Based on our analysis, you might want to hold off buying gold as prices are expected to drop.";
-
-    document.getElementById("investmentAdvice").textContent = adviceText;
 
     // Update prediction date
     const today = new Date();
@@ -79,9 +75,7 @@ predictButton.addEventListener("click", () => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     document.getElementById("predictionDate").textContent =
       predictionDate.toLocaleDateString("en-US", options);
-    document.getElementById("predictedPrice").textContent = `$${prices.at(-1).toFixed(2)}`;
-    // Generate chart
-    // generatePriceChart(parseInt(timeframe.value), isPositive);
+    document.getElementById("predictedPrice").textContent = `$${prices.at(-1).toFixed(2)}`;;
   }, 1500);
 });
 
