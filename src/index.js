@@ -46,7 +46,7 @@ predictButton.addEventListener("click", () => {
     predictionResults.classList.remove("hidden");
 
     // Update results based on form inputs
-    const timeframe = document.getElementById("timeframe");
+    const timeframe = document.getElementById("time");
     const timeframeText = timeframe.options[timeframe.selectedIndex].text;
     document.getElementById("resultTimeframe").textContent =
       timeframeText;
