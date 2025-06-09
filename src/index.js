@@ -52,7 +52,7 @@ predictButton.addEventListener("click", () => {
       timeframeText;
 
     // Generate random price change for demo
-    const changePercentage = (Math.random() * 6 - 2).toFixed(2);
+    const changePercentage = (prices.at(-1) - prices[0]) / prices[0] * 100;
     const isPositive = changePercentage >= 0;
     const changeText = isPositive
       ? `+${changePercentage}%`
@@ -78,7 +78,7 @@ predictButton.addEventListener("click", () => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     document.getElementById("predictionDate").textContent =
       predictionDate.toLocaleDateString("en-US", options);
-
+    document.getElementById("predictedPrice").textContent = `$${prices.at(-1).toFixed(2)}`;
     // Generate chart
     // generatePriceChart(parseInt(timeframe.value), isPositive);
   }, 1500);
