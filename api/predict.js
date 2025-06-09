@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'days_ahead harus berupa angka', received: req.body });
   }
 
-  const RAILWAY_URL = 'https://web-production-b0aa.up.railway.app/predict';
+  const RAILWAY_URL = 'hhttps://web-production-960e5.up.railway.app/predict';
 
   try {
     const response = await fetch(RAILWAY_URL, {
