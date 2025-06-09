@@ -77,7 +77,7 @@
             spanTf.textContent     = selectTime.options[selectTime.selectedIndex].text;
 
             /* Hitung perubahan acak demo */
-            const changePct   = (Math.random() * 6 - 2).toFixed(2);
+            const changePct   = (prices.at(-1) - prices[0]) / prices[0] * 100;
             const isPositive  = changePct >= 0;
             spanChange.textContent = `${isPositive ? '+' : ''}${changePct}%`;
             spanChange.className   = `font-medium ${isPositive ? 'text-green-600' : 'text-red-600'}`;
