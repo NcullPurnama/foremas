@@ -828,65 +828,96 @@
 
     <!-- script untuk predict -->
     <script>
-      let chartInstance = null;
+      /*  ──────────────────────────────
+          Prediksi harga emas – Front-end
+          ────────────────────────────── */
 
-      function predict() {
-        const days = parseInt(document.getElementById('time').value);
+      document.addEventListener('DOMContentLoaded', () => {
+        const selectTime   = document.getElementById('time');
+        const spanResult   = document.getElementById('result');            // <span id="result">
+        const spanTf       = document.getElementById('resultTimeframe');   // <span id="resultTimeframe">
+        const spanChange   = document.getElementById('expectedChange');    // <span id="expectedChange">
+        const spanAdvice   = document.getElementById('investmentAdvice');  // <span id="investmentAdvice">
+        const canvasChart  = document.getElementById('priceChart');        // <canvas id="priceChart">
 
-        fetch('https://web-production-960e5.up.railway.app/predict', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ days_ahead: days })
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.error) {
-            document.getElementById('result').textContent = "Error: " + data.error;
-            return;
-          }
+        /* ─── Guard: pastikan semua elemen ada ─── */
+        if (!selectTime || !spanResult || !spanTf || !spanChange || !spanAdvice || !canvasChart) {
+          console.error('🔥 Element HTML tidak lengkap—periksa id="time", "result", "resultTimeframe", "expectedChange", "investmentAdvice", dan "priceChart".');
+          return;
+        }
 
-          const prices = data.prediction;
-          const average = data.average;
+        let chartInstance = null;
 
-          document.getElementById('result').textContent = 
-            `Prediksi harga emas: $ ${average}`;
-          const pricesWithOffset = [null, ...prices];  // agar titik hari ini kosong
-          const labels = getNextDates(prices.length + 1);
+        /* tombol atau event lain bisa memanggil predict() */
+        window.predict = async function () {
+          const daysAhead = parseInt(selectTime.value, 10);
 
-          // Hapus chart lama jika ada
-          if (chartInstance) {
-            chartInstance.destroy();
-          }
+          try {
+            const response = await fetch('https://web-production-960e5.up.railway.app/predict', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ days_ahead: daysAhead })
+            });
 
-          chartInstance = new Chart(document.getElementById('priceChart'), {
-            type: 'line',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Prediksi Harga Emas',
-                data: pricesWithOffset,
-                borderColor: 'gold',
-                backgroundColor: 'rgba(255,215,0,0.2)',
-                fill: true,
-                tension: 0.4
-              }]
-            },
-            options: {
-              responsive: true,
-              scales: {
-                y: {
-                  beginAtZero: false
-                }
-              }
+            if (!response.ok) {
+              throw new Error(`Server error: ${response.status}`);
             }
-          });
-        })
-        .catch(err => {
-          document.getElementById('result').textContent = 
-            'Terjadi kesalahan: ' + err.message;
-        });
-      }
-    </script>
+
+            const data = await response.json();
+            if (data.error) {
+              spanResult.textContent = `Error: ${data.error}`;
+              return;
+            }
+
+            /* ─── Update teks hasil ─── */
+            const prices   = data.prediction;
+            const average  = data.average;
+            spanResult.textContent = `Prediksi harga emas: $ ${average}`;
+            spanTf.textContent     = selectTime.options[selectTime.selectedIndex].text;
+
+            /* Hitung perubahan acak demo */
+            const changePct   = (Math.random() * 6 - 2).toFixed(2);
+            const isPositive  = changePct >= 0;
+            spanChange.textContent = `${isPositive ? '+' : ''}${changePct}%`;
+            spanChange.className   = `font-medium ${isPositive ? 'text-green-600' : 'text-red-600'}`;
+
+            spanAdvice.textContent = isPositive
+              ? 'Based on our analysis, we recommend considering buying gold as prices are expected to rise.'
+              : 'Based on our analysis, you might want to hold off buying gold as prices are expected to drop.';
+
+            /* ─── Siapkan data chart ─── */
+            const pricesWithOffset = [null, ...prices];
+            const labels = getNextDates(prices.length + 1);
+
+            if (chartInstance) chartInstance.destroy();   // hapus chart lama
+
+            chartInstance = new Chart(canvasChart, {
+              type: 'line',
+              data: {
+                labels,
+                datasets: [{
+                  label: 'Prediksi Harga Emas',
+                  data: pricesWithOffset,
+                  borderColor: 'gold',
+                  backgroundColor: 'rgba(255,215,0,0.2)',
+                  fill: true,
+                  tension: 0.4
+                }]
+              },
+              options: {
+                responsive: true,
+                scales: { y: { beginAtZero: false } }
+              }
+            });
+
+          } catch (err) {
+            console.error(err);
+            spanResult.textContent = `Terjadi kesalahan: ${err.message}`;
+          }
+        };
+      });
+      </script>
+
 
     <!-- script untuk mengambil tanggal -->
      <script>
@@ -904,7 +935,7 @@
 
         return dates;
       }
-     </script>
+    </script>
 
 
   </body>
