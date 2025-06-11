@@ -793,7 +793,7 @@
             /* ─── Update teks hasil ─── */
             const prices   = data.prediction;
             const average  = data.average;
-            spanResult.textContent = `Prediksi harga emas: ₹ ${average}`;
+            spanResult.textContent = `Prediksi harga emas: ₹ ${Math.floor(average)}`;
             spanTf.textContent     = selectTime.options[selectTime.selectedIndex].text;
 
             const changePct   = (prices.at(-1) - prices[0]) / prices[0] * 100;
@@ -806,8 +806,8 @@
               : 'Based on our analysis, you might want to hold off buying gold as prices are expected to drop.';
 
             const price = prices.at(-1);
-            const inr = `₹ ${price.toFixed(2)}`;
-            const idr = `Rp ${(price * 190.31).toLocaleString('id-ID')}`; // konversi ke rupiah
+            const inr = `₹ ${Math.floor(price)}`;
+            const idr = `Rp ${(Math.floor(price) * 190).toLocaleString('id-ID')}`; // konversi ke rupiah
 
             document.getElementById("predictedPrice").textContent = `${inr} / ${idr}`;
 
