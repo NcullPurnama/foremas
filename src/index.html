@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FOREMAS - Gold Price Prediction</title>
     <link rel="icon" type="image/png" href="/logo_only.png">
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
@@ -20,30 +20,30 @@
               <img src="/logo.jpg" alt="logo" class="w-3/4 logo" />
             </div>
           </div>
-          <div class="hidden md:flex items-center space-x-1">
+          <div id="navbar" class="hidden md:flex items-center space-x-1">
             <a
               href="#home"
-              class="py-4 px-2 text-yellow-600 border-b-4 border-yellow-500 font-semibold"
+              class="nav-link py-4 px-2 text-yellow-600 border-b-4 border-yellow-500 font-semibold"
               >Home</a
             >
             <a
               href="#about"
-              class="py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
+              class="nav-link py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
               >About</a
             >
             <a
               href="#team"
-              class="py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
+              class="nav-link py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
               >Team</a
             >
             <a
               href="#predict"
-              class="py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
+              class="nav-link py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
               >Predict</a
             >
             <a
               href="#contact"
-              class="py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
+              class="nav-link py-4 px-2 text-gray-500 hover:text-yellow-600 transition duration-300"
               >Contact</a
             >
           </div>
@@ -64,40 +64,40 @@
           </div>
         </div>
       </div>
-      <div class="hidden mobile-menu">
+      <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out mobile-menu">
         <ul>
           <li>
             <a
               href="#home"
-              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300 emas emas"
               >Home</a
             >
           </li>
           <li>
             <a
               href="#about"
-              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300 emas"
               >About</a
             >
           </li>
           <li>
             <a
               href="#team"
-              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300 emas"
               >Team</a
             >
           </li>
           <li>
             <a
               href="#predict"
-              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300 emas"
               >Predict</a
             >
           </li>
           <li>
             <a
               href="#contact"
-              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300"
+              class="block text-sm px-2 py-4 hover:bg-yellow-50 transition duration-300 emas"
               >Contact</a
             >
           </li>
@@ -305,10 +305,10 @@
                   predictions are both accurate and fast.
                 </p>
                 <div class="mt-4 flex space-x-4">
-                  <a href="https://www.linkedin.com/in/viddy-purnama/" class="text-gray-400 hover:text-yellow-500">
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
                     <i class="fab fa-linkedin"></i>
                   </a>
-                  <a href="https://github.com/NcullPurnama" class="text-gray-400 hover:text-yellow-500">
+                  <a href="#" class="text-gray-400 hover:text-yellow-500">
                     <i class="fab fa-github"></i>
                   </a>
                 </div>
@@ -707,7 +707,6 @@
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="index.js" defer></script>
 
     <!-- script untuk email -->
     <script>
@@ -747,110 +746,65 @@
 
     <!-- script untuk predict -->
     <script>
-      /*  ──────────────────────────────
-          Prediksi harga emas – Front-end
-          ────────────────────────────── */
+      let chartInstance = null;
 
-      document.addEventListener('DOMContentLoaded', () => {
-        const selectTime   = document.getElementById('time');
-        const spanResult   = document.getElementById('result');            // <span id="result">
-        const spanTf       = document.getElementById('resultTimeframe');   // <span id="resultTimeframe">
-        const spanPredict  = document.getElementById('predictedPrice');    // <span id="predictedPrice">
-        const spanChange   = document.getElementById('expectedChange');    // <span id="expectedChange">
-        const spanDate     = document.getElementById("predictionDate")     // <span id="predictionDate">
-        const spanAdvice   = document.getElementById('investmentAdvice');  // <span id="investmentAdvice">
-        const canvasChart  = document.getElementById('priceChart');        // <canvas id="priceChart">
+      function predict() {
+        const days = parseInt(document.getElementById('time').value);
 
-        /* ─── Guard: pastikan semua elemen ada ─── */
-        if (!selectTime || !spanResult || !spanTf || !spanPredict|| !spanChange || !spanDate ||!spanAdvice || !canvasChart) {
-          console.error('🔥 Element HTML tidak lengkap');
-          return;
-        }
-
-        let chartInstance = null;
-
-        /* tombol atau event lain bisa memanggil predict() */
-        window.predict = async function () {
-          const daysAhead = parseInt(selectTime.value, 10);
-
-          try {
-            const response = await fetch('https://web-production-960e5.up.railway.app/predict', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ days_ahead: daysAhead })
-            });
-
-            if (!response.ok) {
-              throw new Error(`Server error: ${response.status}`);
-            }
-
-            const data = await response.json();
-            if (data.error) {
-              spanResult.textContent = `Error: ${data.error}`;
-              return;
-            }
-
-            /* ─── Update teks hasil ─── */
-            const prices   = data.prediction;
-            const average  = data.average;
-            spanResult.textContent = `Prediksi harga emas: ₹ ${Math.floor(average)}`;
-            spanTf.textContent     = selectTime.options[selectTime.selectedIndex].text;
-
-            const changePct   = (prices.at(-1) - prices[0]) / prices[0] * 100;
-            const isPositive  = changePct >= 0;
-            spanChange.textContent = isPositive ? `+${changePct.toFixed(2)}%` : `${changePct.toFixed(2)}%`;
-            spanChange.className   = `font-medium ${isPositive ? 'text-green-600' : 'text-red-600'}`;
-
-            spanAdvice.textContent = isPositive
-              ? 'Based on our analysis, we recommend considering buying gold as prices are expected to rise.'
-              : 'Based on our analysis, you might want to hold off buying gold as prices are expected to drop.';
-
-            const price = prices.at(-1);
-            const inr = `₹ ${Math.floor(price)}`;
-            const idr = `Rp ${(Math.floor(price) * 190).toLocaleString('id-ID')}`; // konversi ke rupiah
-
-            document.getElementById("predictedPrice").textContent = `${inr} / ${idr}`;
-
-
-            const today = new Date();
-            const predictionEndDate = new Date(today);
-            predictionEndDate.setDate(today.getDate() + prices.length);
-            const options = { year: "numeric", month: "long", day: "numeric" };
-            document.getElementById("predictionDate").textContent = predictionEndDate.toLocaleDateString("en-US", options);
-
-            /* ─── Siapkan data chart ─── */
-            const pricesWithOffset = [null, ...prices];
-            const labels = getNextDates(prices.length + 1);
-
-            if (chartInstance) chartInstance.destroy();   // hapus chart lama
-
-            chartInstance = new Chart(canvasChart, {
-              type: 'line',
-              data: {
-                labels,
-                datasets: [{
-                  label: 'Prediksi Harga Emas',
-                  data: pricesWithOffset,
-                  borderColor: 'gold',
-                  backgroundColor: 'rgba(255,215,0,0.2)',
-                  fill: true,
-                  tension: 0.4
-                }]
-              },
-              options: {
-                responsive: true,
-                scales: { y: { beginAtZero: false } }
-              }
-            });
-
-          } catch (err) {
-            console.error(err);
-            spanResult.textContent = `Terjadi kesalahan: ${err.message}`;
+        fetch('http://localhost:3000/api/predict', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ days_ahead: days })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            document.getElementById('result').textContent = "Error: " + data.error;
+            return;
           }
-        };
-      });
-      </script>
 
+          const prices = data.prediction;
+          const average = data.average;
+
+          document.getElementById('result').textContent = 
+            `Prediksi harga emas: ₹ ${Math.floor(average)}`;
+          const pricesWithOffset = [null, ...prices];  // agar titik hari ini kosong
+          const labels = getNextDates(prices.length + 1);
+
+          // Hapus chart lama jika ada
+          if (chartInstance) {
+            chartInstance.destroy();
+          }
+
+          chartInstance = new Chart(document.getElementById('priceChart'), {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Prediksi Harga Emas',
+                data: pricesWithOffset,
+                borderColor: 'gold',
+                backgroundColor: 'rgba(255,215,0,0.2)',
+                fill: true,
+                tension: 0.4
+              }]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: false
+                }
+              }
+            }
+          });
+        })
+        .catch(err => {
+          document.getElementById('result').textContent = 
+            'Terjadi kesalahan: ' + err.message;
+        });
+      }
+    </script>
 
     <!-- script untuk mengambil tanggal -->
      <script>
@@ -868,7 +822,58 @@
 
         return dates;
       }
+     </script>
+    
+    <!-- script untuk active navbar -->
+    <script>
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll("#navbar .nav-link");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 120; // buffer for navbar height
+          const sectionHeight = section.offsetHeight;
+          if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("text-yellow-600", "border-yellow-500", "font-semibold");
+          link.classList.add("text-gray-500");
+
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("text-yellow-600", "border-b-4", "border-yellow-500", "font-semibold");
+            link.classList.remove("text-gray-500");
+          } else {
+            link.classList.remove("border-b-4", "border-yellow-500", "font-semibold");
+          }
+        });
+      });
     </script>
+
+    <!-- script untuk burger -->
+     <script>
+        const btn = document.querySelector(".mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
+
+        let isOpen = false;
+
+        btn.addEventListener("click", () => {
+          isOpen = !isOpen;
+
+          if (isOpen) {
+            menu.classList.remove("max-h-0", "overflow-hidden");
+            menu.classList.add("max-h-[500px]"); // sesuaikan dengan tinggi isi menu
+          } else {
+            menu.classList.remove("max-h-[500px]");
+            menu.classList.add("max-h-0", "overflow-hidden");
+          }
+        });
+      </script>
+
 
 
   </body>
