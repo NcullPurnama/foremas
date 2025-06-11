@@ -793,7 +793,7 @@
             /* ─── Update teks hasil ─── */
             const prices   = data.prediction;
             const average  = data.average;
-            spanResult.textContent = `Prediksi harga emas: ₹ ${average}`;
+            spanResult.textContent = `Prediksi harga emas: ₹${average}`;
             spanTf.textContent     = selectTime.options[selectTime.selectedIndex].text;
 
             const changePct   = (prices.at(-1) - prices[0]) / prices[0] * 100;
@@ -805,9 +805,9 @@
               ? 'Based on our analysis, we recommend considering buying gold as prices are expected to rise.'
               : 'Based on our analysis, you might want to hold off buying gold as prices are expected to drop.';
 
-            document.getElementById("predictedPrice").textContent = ` ₹ ${prices.at(-1).toFixed(2)}`;
+            document.getElementById("predictedPrice").textContent = ` ₹${prices.at(-1).toFixed(2)}`;
 
-            const today = new Date();qqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+            const today = new Date();
             const predictionEndDate = new Date(today);
             predictionEndDate.setDate(today.getDate() + prices.length);
             const options = { year: "numeric", month: "long", day: "numeric" };
