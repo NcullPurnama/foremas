@@ -2,7 +2,7 @@
 
 **ForeMas** adalah aplikasi web interaktif untuk memprediksi harga emas berdasarkan data historis menggunakan model **LSTM (Long Short-Term Memory)**. Aplikasi ini bertujuan membantu pengguna membuat keputusan investasi lebih cerdas dengan memanfaatkan teknologi **Machine Learning** dan **visualisasi data**.
 
-![Banner](./public/chart.png)
+![Banner]([./public/chart.png](https://foremas.vercel.app/logo.jpg))
 
 ---
 
