@@ -70,3 +70,45 @@ foremas/
 ├── webpack.config.js     # Webpack configuration
 ├── package.json          # Dependency & script
 └── vercel.json           # Config deployment ke Vercel
+
+```
+---
+
+### 💻 Menjalankan project secara local
+
+Clone the project
+
+```bash
+  git clone https://github.com/NcullPurnama/foremas.git
+```
+
+Go to the project directory
+
+```bash
+  cd foremas
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the frontend
+
+```bash
+  npm run start
+```
+
+Start the server
+
+```bash
+    cd api
+```
+```
+    node contact.js
+```
+```
+    node predict.js
+```
+
