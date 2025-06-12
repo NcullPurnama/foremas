@@ -108,4 +108,4 @@ Start the server
 ```
     node server.js
 ```
-
+ps. disarankan membuat 2 terminal agar terlihat jika ada keasalahan pada saat menjalankan codenya
