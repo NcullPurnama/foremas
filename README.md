@@ -61,11 +61,11 @@ Dataset ini mencakup harga emas harian selama 6 tahun dalam berbagai satuan ukur
 
 ```bash
 foremas/
-├── api/                  # API endpoints (predict & contact)
+├── backend/              # API endpoints (predict & contact)
 ├── dist/                 # Bundle hasil build
-├── public/               # Static assets
-├── src/                  # Source code utama frontend
-├── ss/                   # Screenshot aplikasi
+├── frontend/             # Source code utama frontend
+├── ml/                   # script python, model, dan data.csv untuk keperluan prediksi
+├── public/               # File statik yang dibutuhkan web
 ├── *.ipynb               # Notebook ML training & evaluasi
 ├── webpack.config.js     # Webpack configuration
 ├── package.json          # Dependency & script
@@ -103,12 +103,9 @@ Start the frontend
 Start the server
 
 ```bash
-    cd api
+    cd backend
 ```
 ```
-    node contact.js
-```
-```
-    node predict.js
+    node server.js
 ```
 
